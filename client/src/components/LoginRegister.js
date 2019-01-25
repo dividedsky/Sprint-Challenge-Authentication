@@ -28,9 +28,10 @@ class LoginRegister extends React.Component {
     ax.post(url, this.state).then(res => {
       console.log(res.data.token);
       localStorage.setItem('jwt', res.data.token);
+    this.props.history.push('/jokes');
     });
 
-    console.log('submit');
+    this.clearForm();
   };
   render() {
     return (
