@@ -36,7 +36,6 @@ async function login(req, res) {
     return null;
   }
   const user = await db('users').where({username: req.body.username}).first();
-  console.log((user));
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     
     const token = generateToken(req.body);
