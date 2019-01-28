@@ -7,7 +7,21 @@ const jwtKey =
 // quickly see what this file exports
 module.exports = {
   authenticate,
+  generateToken,
 };
+
+function generateToken(user) {
+  const payload = {
+    username: user.username,
+  }
+
+  const secret = process.env.JWT_SECRET
+  const options = {
+    expiresIn: '15m',
+  }
+
+  return jwt.sign(payload, secret, options);
+}
 
 // implementation details
 function authenticate(req, res, next) {
